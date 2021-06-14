@@ -1,6 +1,27 @@
-POST http://localhost:8000/api/auth/register/
+### GET all crises
+GET http://localhost:8000/api/crises/
+
+### GET single crisis
+GET http://localhost:8000/api/crises/1/
+
+### Create a crisis
+POST http://localhost:8000/api/crises/
 Content-Type: application/json
 
 {
-  
+  "disasterType": "Tsunami",
+  "isSolved": true
 }
+
+### Edit/Update a crisis
+PUT http://localhost:8000/api/crises/2/
+Content-Type: application/json
+
+{
+  "disasterType": "Hurricane",
+  # "isSolved": true
+}
+
+### Delete a single crisis
+DELETE http://localhost:8000/api/crises/1/
+Content-Type: application/json
