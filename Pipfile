@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+pylint = "*"
+psycopg2-binary = "*"
+djangorestframework-camel-case = "*"
 
 [dev-packages]
 
