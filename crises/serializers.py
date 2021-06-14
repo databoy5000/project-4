@@ -11,13 +11,13 @@ class CrisisSerializer(serializers.ModelSerializer):
         model = Crisis
         fields = '__all__'
 
-class NGOResourceSerializer(CrisisSerializer):
-    class Meta:
-        model = NGOResource
-        fields = '__all__'
+# class NGOResourceSerializer(CrisisSerializer):
+#     class Meta:
+#         model = NGOResource
+#         fields = '__all__'
 
 class PopulatedCrisisSerializer(CrisisSerializer):
     requests = RequestSerializer(many=True)
 
-class PopulatedNGOResourceSerializer(CrisisSerializer):
-    ngo_resources = NGOResourceSerializer(many=True)
+# class PopulatedNGOResourceSerializer(CrisisSerializer):
+#     ngo_resources = NGOResourceSerializer(many=True)
