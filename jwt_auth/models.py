@@ -1,3 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+# class User(AbstractUser):
+#   is_help_seeker = models.BooleanField('help seeker', default=False)
+#   is_NGO = models.BooleanField('NGO', default=False)
+
+class User(AbstractUser):
+  username = models.CharField(max_length=50)
+  email = models.CharField(max_length=50)
+  profile_picture_url = models.CharField(max_length=250)
+  country = models.CharField(max_length=50)
