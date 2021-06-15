@@ -1,10 +1,28 @@
 from rest_framework import serializers
-from .models import Crisis, NGOResource, Request
+from rest_framework.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+
+from .models import Crisis, NGOResource, Request, Resource
+
+User = get_user_model()
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
+class ReadResourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resource
+        fields = '__all__'
 
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Request
-        fields = '__all__'
+        fields = ('id', 'quantity', 'resource')
+
+class PopulatedReadRequestSerializer(RequestSerializer):
+    resource = ReadResourceSerializer()
 
 class CrisisSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,8 +34,31 @@ class CrisisSerializer(serializers.ModelSerializer):
 #         model = NGOResource
 #         fields = '__all__'
 
-class PopulatedCrisisSerializer(CrisisSerializer):
+class WriteCrisisSerializer(CrisisSerializer):
     requests = RequestSerializer(many=True)
+
+    def create(self, validated_data):
+        requests_data = validated_data.pop('requests')
+        created_crisis = Crisis.objects.create(
+            disaster_type = validated_data['disaster_type'],
+            is_solved = validated_data['is_solved'],
+            owner = validated_data['owner']
+        )
+        
+        requests = [
+            Request.objects.create(
+                crisis = created_crisis,
+                quantity = request_data.get('quantity'),
+                resource = request_data.get('resource'),
+            )
+            for request_data in requests_data
+        ]
+
+        return created_crisis
+
+class ReadCrisisSerializer(CrisisSerializer):
+    requests = PopulatedReadRequestSerializer(many=True)
+    owner = UserSerializer()
 
 # class PopulatedNGOResourceSerializer(CrisisSerializer):
 #     ngo_resources = NGOResourceSerializer(many=True)
