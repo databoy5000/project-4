@@ -14,14 +14,41 @@ Content-Type: application/json
 }
 
 ### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/2/
+PUT http://localhost:8000/api/crises/1/
 Content-Type: application/json
 
 {
   "disasterType": "Hurricane",
-  # "isSolved": true
+  "isSolved": true
 }
 
 ### Delete a single crisis
 DELETE http://localhost:8000/api/crises/1/
 Content-Type: application/json
+
+###
+
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "userType": "Help-seeker",
+  "username": "Raph",
+  "email": "Raph@worco.com",
+  "profilePictureUrl": "fake url",
+  "country": "UK",
+  "password": "raphpass",
+  "passwordConfirmation": "raphpass"
+}
+
+###
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+  "email": "Raph@worco.com",
+  "password": "raphpass"
+}
+
+###
+GET http://localhost:8000/api/auth/profile/1/
