@@ -36,9 +36,9 @@ class LoginView(APIView):
         if not user_to_login.check_password(password):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
-        # expiry_time = datetime.now() + timedelta(days=7)
+        expiry_time = datetime.now() + timedelta(days=7)
         token = jwt.encode(
-            {'sub': user_to_login.id},
+            {'sub': user_to_login.id, 'exp':  int(expiry_time.strftime('%s'))},
             settings.SECRET_KEY, 
             algorithm='HS256'
         )
@@ -46,11 +46,10 @@ class LoginView(APIView):
         return Response({'token': token, 'message': f'Welcome back {user_to_login.username}!'})
 
 class ProfileView(APIView):
-    def get(self, _request, pk):
+    def get(self, request, user_pk):
         try:
-            user = User.objects.get(pk=pk)
-            serialized_user = PopulatedUserSerializer(user)
-
+            user = User.objects.get(user_pk=user_pk)
+            serialized_user = PopulatedHelpSeekerUserSerializer(user)
             return Response(serialized_user.data, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             raise NotFound()
