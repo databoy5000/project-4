@@ -1,54 +1,91 @@
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDM4MDk4OX0.Rx-GKhODFmMFDIvUfl9UZzK5aJ7cwFesV1ISpDiBOTE
+
 ### GET all crises
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/1/
+GET http://localhost:8000/api/crises/22/
 
 ### Create a crisis
 POST http://localhost:8000/api/crises/
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "disasterType": "Tsunami",
-  "isSolved": true
+  "disasterType": "Flood",
+  "isSolved": false,
+  "requests": [
+    {
+    "resource": 1,
+    "quantity": 5
+    },
+    {
+    "resource": 10,
+    "quantity": 10
+    }
+  ]
 }
 
 ### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/1/
+PUT http://localhost:8000/api/crises/2/
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "disasterType": "Hurricane",
+  "disasterType": "Flood",
   "isSolved": true
 }
 
 ### Delete a single crisis
-DELETE http://localhost:8000/api/crises/1/
+DELETE http://localhost:8000/api/crises/2/
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
-###
-
+### Create a user 1
 POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
-  "userType": "Help-seeker",
-  "username": "Raph",
-  "email": "Raph@worco.com",
+  "username": "yep",
+  "email": "yep@ok.com",
+  "password": "Pass1234+=",
+  "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url",
-  "country": "UK",
-  "password": "raphpass",
-  "passwordConfirmation": "raphpass"
+  "country": "France"
 }
 
-###
+### Create a user 2
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "username": "yep2",
+  "email": "yep2@ok.com",
+  "password": "Pass1234+=",
+  "passwordConfirmation": "Pass1234+=",
+  "profilePictureUrl": "fake url",
+  "country": "United Kingdom"
+}
+
+### Login user 1
 POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "Raph@worco.com",
-  "password": "raphpass"
+  "email": "yep@ok.com",
+  "password": "Pass1234+="
 }
 
-###
-GET http://localhost:8000/api/auth/profile/1/
+### Login user 2
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+  "email": "yep2@ok.com",
+  "password": "Pass1234+="
+}
+
+### Get all resources
+GET http://localhost:8000/api/crises/resources/
+Content-Type: application/json
+Authorization: Bearer {{token}}

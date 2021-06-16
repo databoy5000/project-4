@@ -38,14 +38,26 @@ class Resource(models.Model):
         choices=RESOURCE_TYPES,
     )
 
-    resource = models.CharField(
+    resource_name = models.CharField(
         max_length=20,
         choices=RESOURCES,
+        unique=True,
     )
 
     def __str__(self):
-        return f'{self.resource} ({self.resource_type})'
+        return f'{self.resource_name} ({self.resource_type})'
 
+    # def get_types(self):
+    #     types = []
+    #     for resource_type in self.RESOURCE_TYPES:
+    #         types.append(resource_type[1])
+    #     return types
+
+    # def get_resources(self):
+    #     resources = []
+    #     for resource in self.RESOURCES:
+    #         resources.append(resource[1])
+    #     return resources
 
 class Crisis(models.Model):
     TSUNAMI = 'Tsunami'
@@ -72,11 +84,12 @@ class Crisis(models.Model):
     )
     is_solved = models.BooleanField()
 
-    # helpseeker_user = models.ForeignKey(
-    #     HelpSeekerUser,
-    #     related_name = 'crises',
-    #     on_delete = models.CASCADE
-    # )
+    # ! Change 'User' to 'HelpSeekerUser'
+    owner = models.ForeignKey(
+        'jwt_auth.User',
+        related_name = 'crises',
+        on_delete = models.CASCADE
+    )
 
     def __str__(self):
         return f'Crisis {self.id} ({self.disaster_type})'
@@ -93,9 +106,7 @@ class Request(models.Model):
     ]
 
     quantity = models.PositiveSmallIntegerField()
-    # priority = models.IntegerField(
-    #     choices=PRIORITY_LEVELS,
-    # )
+    # priority = models.IntegerField(choices=PRIORITY_LEVELS)
 
     crisis = models.ForeignKey(
         Crisis,
