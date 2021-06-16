@@ -78,5 +78,104 @@
     "resource_type": "Material",
     "resource_name": "Transport"
   }
+},
+{
+  "model": "crises.crisis",
+  "pk": 1,
+  "fields": {
+    "disaster_type": "Flood",
+    "is_solved": false,
+    "owner": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 1,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 1
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 2,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 3,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 3
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 4,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 4
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 5,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 5
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 6,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 6
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 7,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 8,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 8
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 9,
+  "fields": {
+    "quantity": 5,
+    "crisis": 1,
+    "resource": 9
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 10,
+  "fields": {
+    "quantity": 10,
+    "crisis": 1,
+    "resource": 10
+  }
 }
 ]

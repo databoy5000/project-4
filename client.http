@@ -1,15 +1,16 @@
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDM5NTc3Nn0.MNhlUbDp6tg8rW9DS9emUfFaszVjTyUjPK47BNAmez4
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjJ9.SWqWLmRH3OnMduPaM10x6b68wsO2fuUCRki0yKpXX6M
+@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.efp5lJbQlo5ux5w22tQPCNqY-7IefFaRi8C2fVq_pFA
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/13/
+GET http://localhost:8000/api/crises/1/
 
 ### Create a crisis
 POST http://localhost:8000/api/crises/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{help_seeker_token}}
 
 {
   "disasterType": "Flood",
@@ -59,107 +60,167 @@ Authorization: Bearer {{token}}
 }
 
 ### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/13/
+PUT http://localhost:8000/api/crises/1/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{help_seeker_token}}
 
 {
-  "disasterType": "Earthquake",
-  "isSolved": true,
-  "requests": [
-    {
-    "resource": 1,
-    "quantity": 21
-    },
-    {
-    "resource": 2,
-    "quantity": 20
-    },
-    {
-    "resource": 3,
-    "quantity": 20
-    },
-        {
-    "resource": 4,
-    "quantity": 20
-    },
-    {
-    "resource": 5,
-    "quantity": 20
-    },
-    {
-    "resource": 6,
-    "quantity": 20
-    },
-    {
-    "resource": 7,
-    "quantity": 20
-    },
-    {
-    "resource": 8,
-    "quantity": 20
-    },
-    {
-    "resource": 9,
-    "quantity": 20
-    },
-    {
-    "resource": 10,
-    "quantity": 21
-    }
-  ]
+  "disasterType": "Flood",
+  "isSolved": false
+}
+
+### Edit/Update a Request
+PUT http://localhost:8000/api/crises/13/
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
+
+{
+  "resource": true,
+  "quantity": 1000,
 }
 
 ### Delete a single crisis
 DELETE http://localhost:8000/api/crises/2/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+Authorization: Bearer {{help_seeker_token}}
 
-### Create a user 1
+### Create a user HELP-SEEKER
 POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
-  "username": "yep",
-  "email": "yep@ok.com",
+  "userType": "Help-seeker",
+  "username": "hs1",
+  "email": "hs1@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url",
   "country": "France"
 }
 
-### Create a user 2
+### Create a user NGO 1
 POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
-  "username": "yep2",
-  "email": "yep2@ok.com",
+  "userType": "NGO",
+  "username": "ngo1",
+  "email": "ngo1@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url",
   "country": "United Kingdom"
 }
 
-### Login user 1
+### Create a user NGO 2
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "userType": "NGO",
+  "username": "ngo2",
+  "email": "ngo2@worco.com",
+  "password": "Pass1234+=",
+  "passwordConfirmation": "Pass1234+=",
+  "profilePictureUrl": "fake url",
+  "country": "United Kingdom"
+}
+
+### Login user Help Seeker 1
 POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "yep@ok.com",
+  "email": "hs1@worco.com",
   "password": "Pass1234+="
 }
 
-### Login user 2
+### Login user NGO 1
 POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "yep2@ok.com",
+  "email": "ngo1@worco.com",
   "password": "Pass1234+="
 }
 
-### Get all resources
+### Login user NGO 2
+POST http://localhost:8000/api/auth/login/
+Content-Type: application/json
+
+{
+  "email": "ngo2@worco.com",
+  "password": "Pass1234+="
+}
+
+### View user profile
+GET http://localhost:8000/api/auth/profile/2/
+
+### Get resource name + type
 GET http://localhost:8000/api/crises/resources/
 Content-Type: application/json
-Authorization: Bearer {{token}}
+
+### Get NGO resources
+GET http://localhost:8000/api/crises/ngo_resources/
+Content-Type: application/json
+Authorization: Bearer {{NGO_token}}
+
+### Create NGO Resources
+POST http://localhost:8000/api/crises/ngo_resources/
+Content-Type: application/json
+Authorization: Bearer {{NGO_token}}
+
+{
+  "resources": [
+    {
+    "resource": 1,
+    "quantity": 200
+    },
+    {
+    "resource": 2,
+    "quantity": 200
+    },
+    {
+    "resource": 3,
+    "quantity": 200
+    },
+        {
+    "resource": 4,
+    "quantity": 200
+    },
+    {
+    "resource": 5,
+    "quantity": 200
+    },
+    {
+    "resource": 6,
+    "quantity": 200
+    },
+    {
+    "resource": 7,
+    "quantity": 200
+    },
+    {
+    "resource": 8,
+    "quantity": 200
+    },
+    {
+    "resource": 9,
+    "quantity": 200
+    },
+    {
+    "resource": 10,
+    "quantity": 200
+    }
+  ]
+}
+
+### Edit/Update NGO Resources
+PUT http://localhost:8000/api/crises/ngo_resources/2/
+Content-Type: application/json
+Authorization: Bearer {{NGO_token}}
+
+{
+  "resource": 2,
+  "quantity": 778
+}

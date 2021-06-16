@@ -29,10 +29,9 @@ class CrisisSerializer(serializers.ModelSerializer):
         model = Crisis
         fields = '__all__'
 
-# class NGOResourceSerializer(CrisisSerializer):
-#     class Meta:
-#         model = NGOResource
-#         fields = '__all__'
+class ReadCrisisSerializer(CrisisSerializer):
+    requests = PopulatedReadRequestSerializer(many=True)
+    owner = UserSerializer()
 
 class WriteCrisisSerializer(CrisisSerializer):
     requests = RequestSerializer(many=True)
@@ -56,28 +55,31 @@ class WriteCrisisSerializer(CrisisSerializer):
 
         return created_crisis
 
-    def update(self, _instance, validated_data):
+    # def update(self, _instance, validated_data):
 
-        requests_data = validated_data.pop('requests')
+    #     requests_data = validated_data.pop('requests')
 
-        updated_crisis = Crisis.objects.update(
-            disaster_type = validated_data['disaster_type'],
-            is_solved = validated_data['is_solved'],
-            owner = validated_data['owner']
-        )
+    #     updated_crisis = Crisis.objects.update(
+    #         disaster_type = validated_data['disaster_type'],
+    #         is_solved = validated_data['is_solved'],
+    #         owner = validated_data['owner']
+    #     )
         
-        requests = [
-            Request.objects
-                .filter(resource=request_data.get('resource'))
-                .update(quantity=request_data.get('quantity'))
-            for request_data in requests_data
-        ]
+    #     requests = [
+    #         Request.objects
+    #             .filter(resource=request_data.get('resource'))
+    #             .update(quantity=request_data.get('quantity'))
+    #         for request_data in requests_data
+    #     ]
 
-        return updated_crisis
+    #     return updated_crisis
 
-class ReadCrisisSerializer(CrisisSerializer):
-    requests = PopulatedReadRequestSerializer(many=True)
-    owner = UserSerializer()
 
-# class PopulatedNGOResourceSerializer(CrisisSerializer):
-#     ngo_resources = NGOResourceSerializer(many=True)
+class NGOResourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NGOResource
+        fields = '__all__'
+
+class PopulatedNGOResourceSerializer(NGOResourceSerializer):
+    ngo_user = User()
+    resource = ReadResourceSerializer()

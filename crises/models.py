@@ -1,3 +1,4 @@
+from jwt_auth.models import User
 from django.db import models
 
 class Resource(models.Model):
@@ -47,18 +48,6 @@ class Resource(models.Model):
     def __str__(self):
         return f'{self.resource_name} ({self.resource_type})'
 
-    # def get_types(self):
-    #     types = []
-    #     for resource_type in self.RESOURCE_TYPES:
-    #         types.append(resource_type[1])
-    #     return types
-
-    # def get_resources(self):
-    #     resources = []
-    #     for resource in self.RESOURCES:
-    #         resources.append(resource[1])
-    #     return resources
-
 class Crisis(models.Model):
     TSUNAMI = 'Tsunami'
     HURRICANE = 'Hurricane'
@@ -106,7 +95,6 @@ class Request(models.Model):
     ]
 
     quantity = models.PositiveSmallIntegerField()
-    # priority = models.IntegerField(choices=PRIORITY_LEVELS)
 
     crisis = models.ForeignKey(
         Crisis,
@@ -126,11 +114,11 @@ class Request(models.Model):
 class NGOResource(models.Model):
     quantity = models.PositiveSmallIntegerField()
 
-    # ngo_user = models.ForeignKey(
-    #     ngo_user,
-    #     related_name = 'ngo_resources',
-    #     on_delete = models.CASCADE
-    # )
+    ngo_user = models.ForeignKey(
+        User,
+        related_name = 'ngo_resources',
+        on_delete = models.CASCADE
+    )
 
     resource = models.ForeignKey(
         Resource,
