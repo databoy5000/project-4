@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "resource_type": "Human",
-    "resource": "Doctor"
+    "resource_name": "Doctor"
   }
 },
 {
@@ -12,7 +12,7 @@
   "pk": 2,
   "fields": {
     "resource_type": "Human",
-    "resource": "Nurse"
+    "resource_name": "Nurse"
   }
 },
 {
@@ -20,7 +20,7 @@
   "pk": 3,
   "fields": {
     "resource_type": "Human",
-    "resource": "Helper"
+    "resource_name": "Helper"
   }
 },
 {
@@ -28,7 +28,7 @@
   "pk": 4,
   "fields": {
     "resource_type": "Human",
-    "resource": "Teacher"
+    "resource_name": "Teacher"
   }
 },
 {
@@ -36,7 +36,7 @@
   "pk": 5,
   "fields": {
     "resource_type": "Human",
-    "resource": "Rescuer"
+    "resource_name": "Rescuer"
   }
 },
 {
@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "resource_type": "Material",
-    "resource": "Medical"
+    "resource_name": "Medical"
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 7,
   "fields": {
     "resource_type": "Material",
-    "resource": "Nutrition"
+    "resource_name": "Nutrition"
   }
 },
 {
@@ -60,7 +60,7 @@
   "pk": 8,
   "fields": {
     "resource_type": "Material",
-    "resource": "Clothes"
+    "resource_name": "Clothes"
   }
 },
 {
@@ -68,7 +68,7 @@
   "pk": 9,
   "fields": {
     "resource_type": "Material",
-    "resource": "Shelter"
+    "resource_name": "Shelter"
   }
 },
 {
@@ -76,31 +76,7 @@
   "pk": 10,
   "fields": {
     "resource_type": "Material",
-    "resource": "Transport"
-  }
-},
-{
-  "model": "crises.crisis",
-  "pk": 2,
-  "fields": {
-    "disaster_type": "Tsunami",
-    "is_solved": false
-  }
-},
-{
-  "model": "crises.crisis",
-  "pk": 3,
-  "fields": {
-    "disaster_type": "Hurricane",
-    "is_solved": false
-  }
-},
-{
-  "model": "crises.crisis",
-  "pk": 4,
-  "fields": {
-    "disaster_type": "Flood",
-    "is_solved": false
+    "resource_name": "Transport"
   }
 }
 ]

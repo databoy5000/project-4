@@ -1,10 +1,10 @@
-@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDM4MDk4OX0.Rx-GKhODFmMFDIvUfl9UZzK5aJ7cwFesV1ISpDiBOTE
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDM5NTc3Nn0.MNhlUbDp6tg8rW9DS9emUfFaszVjTyUjPK47BNAmez4
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/22/
+GET http://localhost:8000/api/crises/11/
 
 ### Create a crisis
 POST http://localhost:8000/api/crises/
@@ -20,20 +20,94 @@ Authorization: Bearer {{token}}
     "quantity": 5
     },
     {
+    "resource": 2,
+    "quantity": 5
+    },
+    {
     "resource": 3,
+    "quantity": 5
+    },
+        {
+    "resource": 4,
+    "quantity": 5
+    },
+    {
+    "resource": 5,
+    "quantity": 5
+    },
+    {
+    "resource": 6,
+    "quantity": 5
+    },
+    {
+    "resource": 7,
+    "quantity": 5
+    },
+    {
+    "resource": 8,
+    "quantity": 5
+    },
+    {
+    "resource": 9,
+    "quantity": 5
+    },
+    {
+    "resource": 10,
     "quantity": 10
     }
   ]
 }
 
 ### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/2/
+PUT http://localhost:8000/api/crises/11/
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "disasterType": "Flood",
-  "isSolved": true
+  "disasterType": "Earthquake",
+  "isSolved": true,
+  "requests": [
+    {
+    "resource": 1,
+    "quantity": 21
+    },
+    {
+    "resource": 2,
+    "quantity": 20
+    },
+    {
+    "resource": 3,
+    "quantity": 20
+    },
+        {
+    "resource": 4,
+    "quantity": 20
+    },
+    {
+    "resource": 5,
+    "quantity": 20
+    },
+    {
+    "resource": 6,
+    "quantity": 20
+    },
+    {
+    "resource": 7,
+    "quantity": 20
+    },
+    {
+    "resource": 8,
+    "quantity": 20
+    },
+    {
+    "resource": 9,
+    "quantity": 20
+    },
+    {
+    "resource": 10,
+    "quantity": 21
+    }
+  ]
 }
 
 ### Delete a single crisis
