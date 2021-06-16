@@ -46,10 +46,11 @@ POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
-  "username": "yep",
-  "email": "yep@ok.com",
-  "password": "Pass1234+=",
-  "passwordConfirmation": "Pass1234+=",
+  "userType": "Help-seeker",
+  "username": "raph1",
+  "email": "raph1@worco.com",
+  "password": "raphpass",
+  "passwordConfirmation": "raphpass",
   "profilePictureUrl": "fake url",
   "country": "France"
 }
@@ -59,6 +60,7 @@ POST http://localhost:8000/api/auth/register/
 Content-Type: application/json
 
 {
+  "userType": "",
   "username": "yep2",
   "email": "yep2@ok.com",
   "password": "Pass1234+=",
@@ -72,8 +74,8 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "yep@ok.com",
-  "password": "Pass1234+="
+  "email": "raph@worco.com",
+  "password": "raphpass"
 }
 
 ### Login user 2
@@ -84,6 +86,9 @@ Content-Type: application/json
   "email": "yep2@ok.com",
   "password": "Pass1234+="
 }
+
+### View user profile
+GET http://localhost:8000/api/auth/profile/2/
 
 ### Get all resources
 GET http://localhost:8000/api/crises/resources/
