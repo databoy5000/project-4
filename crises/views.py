@@ -55,7 +55,6 @@ class CrisisDetailView(APIView):
         
         if updated_crisis.is_valid():
             updated_crisis.save()
-            print('updated_crisis: ', updated_crisis)
             return Response(updated_crisis.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_crisis.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
@@ -79,10 +78,16 @@ class ResourceListView(APIView):
 # ! check all the below
 class NGOResourceDetailView(APIView):
 
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated, )
 
     def get_crisis(self, crisis_pk):
         try:
             return Crisis.objects.get(pk=crisis_pk)
         except Crisis.DoesNotExist:
             raise NotFound()
+
+    def get(self, _request, crisis_pk):
+        request.data['owner'] = request.user.id
+        crisis = self.get_crisis(crisis_pk=crisis_pk)
+        serialized_crisis = ReadCrisisSerializer(crisis)
+        return Response(serialized_crisis.data, status=status.HTTP_200_OK)

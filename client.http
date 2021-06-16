@@ -4,7 +4,7 @@
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/11/
+GET http://localhost:8000/api/crises/13/
 
 ### Create a crisis
 POST http://localhost:8000/api/crises/
@@ -59,7 +59,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/11/
+PUT http://localhost:8000/api/crises/13/
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

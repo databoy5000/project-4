@@ -1,5 +1,3 @@
-from django.db.models import fields
-from jwt_auth.admin import User
 from rest_framework.serializers import ModelSerializer
 from django.contrib.auth import get_user_model
 # from crises.serializers import CrisisSerializer

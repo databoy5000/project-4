@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+# from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied, NotFound
@@ -8,7 +8,7 @@ from django.conf import settings
 import jwt
 
 from .serializers import UserSerializer
-from .populated import PopulatedHelpSeekerUserSerializer
+from .populated import PopulatedUserSerializer
 
 User = get_user_model()
 
