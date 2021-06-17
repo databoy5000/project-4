@@ -72,8 +72,12 @@ class Crisis(models.Model):
         choices=DISASTER_TYPES,
     )
     is_solved = models.BooleanField()
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    place_name = models.CharField(max_length=100)
+    country = models.CharField(max_length=70)
+    disaster_description = models.TextField(max_length=1000)
 
-    # ! Change 'User' to 'HelpSeekerUser'
     owner = models.ForeignKey(
         'jwt_auth.User',
         related_name = 'crises',
@@ -82,6 +86,12 @@ class Crisis(models.Model):
 
     def __str__(self):
         return f'Crisis {self.id} ({self.disaster_type})'
+
+    def get_disaster_types(self):
+        disaster_types_list = []
+        for dister_type in self.DISASTER_TYPES:
+            disaster_types_list.append(dister_type[1])
+        return disaster_types_list
 
 class Request(models.Model):
     LOW = 1
