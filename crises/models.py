@@ -72,8 +72,8 @@ class Crisis(models.Model):
         choices=DISASTER_TYPES,
     )
     is_solved = models.BooleanField()
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=11, decimal_places=8)
+    latitude = models.DecimalField(max_digits=11, decimal_places=8)
     place_name = models.CharField(max_length=100)
     country = models.CharField(max_length=70)
     disaster_description = models.TextField(max_length=1000)
