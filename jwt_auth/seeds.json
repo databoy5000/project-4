@@ -15,7 +15,7 @@
     "username": "admin",
     "email": "admin@worco.com",
     "profile_picture_url": "",
-    "country": null,
+    "country": "",
     "groups": [],
     "user_permissions": []
   }
@@ -57,7 +57,7 @@
     "username": "ngo1",
     "email": "ngo1@worco.com",
     "profile_picture_url": "fake url",
-    "country": null,
+    "country": "",
     "groups": [],
     "user_permissions": []
   }
@@ -78,7 +78,7 @@
     "username": "ngo2",
     "email": "ngo2@worco.com",
     "profile_picture_url": "fake url",
-    "country": null,
+    "country": "",
     "groups": [],
     "user_permissions": []
   }

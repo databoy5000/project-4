@@ -95,12 +95,26 @@ Content-Type: application/json
 
 {
   "userType": "Help-seeker",
-  "username": "hs1",
-  "email": "hs1@worco.com",
+  "username": "hs3",
+  "email": "hs3@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url",
   "country": "France"
+}
+
+### Create a user HELP-SEEKER 2
+POST http://localhost:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "userType": "Help-seeker",
+  "username": "",
+  "email": "hs4@worco.com",
+  "password": "Pass1234+=",
+  "passwordConfirmation": "Pass1234+=",
+  "profilePictureUrl": "fake url",
+  "country": "UK"
 }
 
 ### Create a user NGO 1
@@ -109,8 +123,8 @@ Content-Type: application/json
 
 {
   "userType": "NGO",
-  "username": "ngo1",
-  "email": "ngo1@worco.com",
+  "username": "ngo3",
+  "email": "ngo3@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url"

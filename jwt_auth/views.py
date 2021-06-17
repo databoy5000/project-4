@@ -17,11 +17,22 @@ class RegisterView(APIView):
         print('in POST ----')
         user_to_create = UserSerializer(data=request.data)
         if user_to_create.is_valid():
-            user_to_create.save()
-            return Response(
-                {'message': 'Registration successful'},
-                status=status.HTTP_201_CREATED
-            )
+            if request.data['user_type'] == 'Help-seeker':
+                try:
+                    User.objects.get(country=request.data['country'])
+                except User.DoesNotExist:
+                    user_to_create.save()
+                    return Response(
+                        {'message': 'Registration successful'},
+                        status=status.HTTP_201_CREATED
+                    )
+                return Response({'country': ['Help seeker already exists for this country.']}, status=status.HTTP_409_CONFLICT)
+            else:
+                user_to_create.save()
+                return Response(
+                    {'message': 'Registration successful'},
+                    status=status.HTTP_201_CREATED
+                )
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class LoginView(APIView):
@@ -39,7 +50,7 @@ class LoginView(APIView):
 
         expiry_time = datetime.now() + timedelta(days=7)
         token = jwt.encode(
-            {'sub': user_to_login.id, 'exp':  int(expiry_time.strftime('%s'))},
+            {'sub': user_to_login.id, 'exp':  int(expiry_time.strftime('%s')), 'type': user_to_login.user_type},
             settings.SECRET_KEY, 
             algorithm='HS256'
         )
