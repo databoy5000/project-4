@@ -19,7 +19,7 @@ class CrisisListView(APIView):
         return Response(serialized_crises.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        
+
         # ! Check to only authorize Help-Seeker users to create a crisis
         user_model = User()
         model_user_types = user_model.get_user_types()
@@ -95,9 +95,12 @@ class NGOResourceListView(APIView):
 
     def get(self, request):
 
-        # ! Check to only authorize Help-Seeker users to create a crisis
+        # * Check to only authorize Help-Seeker users to create a crisis
         user_model = User()
         model_user_types = user_model.get_user_types()
+        print('request.user: ', request.user.user_type)
+        print('model_user_types[1]: ', model_user_types[1])
+
         if request.user.user_type != model_user_types[1]:
             raise PermissionDenied()
 
@@ -107,6 +110,10 @@ class NGOResourceListView(APIView):
 
     def post(self, request):
         
+        present_resources = NGOResource.objects.filter(ngo_user=request.user.id)
+        if len(present_resources) >= 1:
+            return Response({"message": "This user already has resource entries."}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
         # ! prep for serialization
         streamlined_data = []
         for resource in request.data['resources']:
@@ -149,3 +156,17 @@ class NGOResourceDetailView(APIView):
             updated_ngo_resource.save()
             return Response(updated_ngo_resource.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_ngo_resource.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+class DisasterTypesListView(APIView):
+
+    def get(self, _request):
+        print('in GET')
+        crisis_model = Crisis()
+        disaster_types = crisis_model.get_disaster_types()
+
+        print(disaster_types)
+
+        if disaster_types:
+            return Response(disaster_types, status=status.HTTP_202_ACCEPTED)
+        return Response({ "message": "Something went wrong!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        

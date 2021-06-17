@@ -1,5 +1,5 @@
-@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjJ9.SWqWLmRH3OnMduPaM10x6b68wsO2fuUCRki0yKpXX6M
-@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.efp5lJbQlo5ux5w22tQPCNqY-7IefFaRi8C2fVq_pFA
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDU0MDMyMX0.u7K1skt4V-qHiJz10DEIxQCOv2U1tfHT7zKTBpzBwbQ
+@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjN9.5TmJA8LDKsmkdHl6P9EaD4I-WYOshkBSWx2AY8ABCCQ
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
@@ -15,6 +15,11 @@ Authorization: Bearer {{help_seeker_token}}
 {
   "disasterType": "Flood",
   "isSolved": false,
+  "longitude": 50.50,
+  "latitude": -1.10,
+  "placeName": "Huddersfield",
+  "country": "United Kingdom",
+  "disasterDescription": "pretty big flood, no casualties",
   "requests": [
     {
     "resource": 1,
@@ -54,7 +59,7 @@ Authorization: Bearer {{help_seeker_token}}
     },
     {
     "resource": 10,
-    "quantity": 10
+    "quantity": 5
     }
   ]
 }
@@ -108,8 +113,7 @@ Content-Type: application/json
   "email": "ngo1@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
-  "profilePictureUrl": "fake url",
-  "country": "United Kingdom"
+  "profilePictureUrl": "fake url"
 }
 
 ### Create a user NGO 2
@@ -122,8 +126,7 @@ Content-Type: application/json
   "email": "ngo2@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
-  "profilePictureUrl": "fake url",
-  "country": "United Kingdom"
+  "profilePictureUrl": "fake url"
 }
 
 ### Login user Help Seeker 1
@@ -155,6 +158,10 @@ Content-Type: application/json
 
 ### View user profile
 GET http://localhost:8000/api/auth/profile/2/
+
+### Get disaster types
+GET http://localhost:8000/api/crises/types/
+Content-Type: application/json
 
 ### Get resource name + type
 GET http://localhost:8000/api/crises/resources/

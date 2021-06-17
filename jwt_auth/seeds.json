@@ -1,0 +1,86 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$ngJeZT1VIONyX4fSTpH8xs$FOpytJNyV8lgJtFZAc5yV2Gd/UdEtmOe7qBMH/+6m6Y=",
+    "last_login": "2021-06-17T12:51:27.426Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-06-17T12:50:36.709Z",
+    "user_type": "",
+    "username": "admin",
+    "email": "admin@worco.com",
+    "profile_picture_url": "",
+    "country": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$c4cAG8DDKHId6XvDr2YSQ1$/davI9rkg6KJYMGfHPoP7MSo8oeQ3aA447SurEOCP1Y=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-17T12:53:40.613Z",
+    "user_type": "Help-seeker",
+    "username": "hs1",
+    "email": "hs1@worco.com",
+    "profile_picture_url": "fake url",
+    "country": "France",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$5HizqWi7q7ilLcDc6n7DH0$ZZnQowyaIGH+oi3Sg2zwbpB/mrZMwiixdOgvaNzhW3A=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-17T12:55:19.040Z",
+    "user_type": "NGO",
+    "username": "ngo1",
+    "email": "ngo1@worco.com",
+    "profile_picture_url": "fake url",
+    "country": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$xK1OpfS2Y3l2fxLOTRLbSX$edSJHXODyKs3FZ/FvKJvhbp6dR2Fq6AXgl7A6q8/Q/0=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-17T12:55:22.839Z",
+    "user_type": "NGO",
+    "username": "ngo2",
+    "email": "ngo2@worco.com",
+    "profile_picture_url": "fake url",
+    "country": null,
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

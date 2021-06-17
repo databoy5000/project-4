@@ -1,4 +1,4 @@
-# from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied, NotFound
@@ -14,6 +14,7 @@ User = get_user_model()
 
 class RegisterView(APIView):
     def post(self, request):
+        print('in POST ----')
         user_to_create = UserSerializer(data=request.data)
         if user_to_create.is_valid():
             user_to_create.save()
@@ -36,9 +37,9 @@ class LoginView(APIView):
         if not user_to_login.check_password(password):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
-        # expiry_time = datetime.now() + timedelta(days=7)
+        expiry_time = datetime.now() + timedelta(days=7)
         token = jwt.encode(
-            {'sub': user_to_login.id},
+            {'sub': user_to_login.id, 'exp':  int(expiry_time.strftime('%s'))},
             settings.SECRET_KEY, 
             algorithm='HS256'
         )
