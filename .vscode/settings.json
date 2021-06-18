@@ -1,4 +1,13 @@
 {
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#ffe600",
+    "titleBar.activeBackground": "#ffe600",
+    "titleBar.inactiveBackground": "#ffe600",
+    "statusBar.foreground": "#000000",
+    "titleBar.inactiveForeground": "#000000",
+    "titleBar.activeForeground": "#000000",
+  },
+  "window.title": "BACKEND",
   "python.pythonPath": "/Users/littletone/.local/share/virtualenvs/server-NYLZT9Y8/bin/python",
   "python.autoComplete.extraPaths": [
     "/Users/spica/.local/share/virtualenvs/server-jP7kO-De/bin/python"

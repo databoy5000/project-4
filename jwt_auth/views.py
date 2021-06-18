@@ -39,7 +39,11 @@ class LoginView(APIView):
 
         expiry_time = datetime.now() + timedelta(days=7)
         token = jwt.encode(
-            {'sub': user_to_login.id, 'exp':  int(expiry_time.strftime('%s'))},
+            {
+                'sub': user_to_login.id,
+                'exp':  int(expiry_time.strftime('%s')),
+                'type': user_to_login.user_type
+            },
             settings.SECRET_KEY, 
             algorithm='HS256'
         )

@@ -74,6 +74,16 @@ class CrisisDetailView(APIView):
         crisis_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class UserCrisisListView(APIView):
+    # permission_classes = (IsAuthenticatedOrReadOnly, )
+
+    def get(self, _request, user_pk):
+        print('in get------')
+        user_crises = Crisis.objects.filter(owner=user_pk)
+        print('--: ', user_crises)
+        serialized_crises = ReadCrisisSerializer(user_crises, many=True)
+        return Response(serialized_crises.data, status=status.HTTP_200_OK)
+
 
 class ResourceListView(APIView):
 

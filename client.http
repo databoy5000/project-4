@@ -1,5 +1,6 @@
-@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDU0MDMyMX0.u7K1skt4V-qHiJz10DEIxQCOv2U1tfHT7zKTBpzBwbQ
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDU3NzczNSwidHlwZSI6IkhlbHAtc2Vla2VyIn0.cWf6s0H2HnjH68w7kKM72YvHM84BmAVQcOPr5Ml6tIA
 @NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjN9.5TmJA8LDKsmkdHl6P9EaD4I-WYOshkBSWx2AY8ABCCQ
+@userId = 2
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
@@ -13,7 +14,7 @@ Content-Type: application/json
 Authorization: Bearer {{help_seeker_token}}
 
 {
-  "disasterType": "Flood",
+  "disasterType": "Tsunami",
   "isSolved": false,
   "longitude": 50.50,
   "latitude": -1.10,
@@ -231,3 +232,65 @@ Authorization: Bearer {{NGO_token}}
   "resource": 2,
   "quantity": 778
 }
+
+### Create a crisis (for errors)
+POST http://localhost:8000/api/crises/
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
+
+{
+  "disasterType": "",
+  "isSolved": false,
+  "longitude": "",
+  "latitude": "",
+  "placeName": "",
+  "country": "",
+  "disasterDescription": "",
+  "requests": [
+    {
+    "resource": 1,
+    "quantity": ""
+    },
+    {
+    "resource": 2,
+    "quantity": ""
+    },
+    {
+    "resource": 3,
+    "quantity": ""
+    },
+        {
+    "resource": 4,
+    "quantity": ""
+    },
+    {
+    "resource": 5,
+    "quantity": ""
+    },
+    {
+    "resource": 6,
+    "quantity": ""
+    },
+    {
+    "resource": 7,
+    "quantity": ""
+    },
+    {
+    "resource": 8,
+    "quantity": ""
+    },
+    {
+    "resource": 9,
+    "quantity": ""
+    },
+    {
+    "resource": 10,
+    "quantity": ""
+    }
+  ]
+}
+
+### Get Specific user crisis list
+GET http://localhost:8000/api/crises/{{userId}}
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
