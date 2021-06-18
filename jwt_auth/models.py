@@ -18,7 +18,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=50, unique=True)
     email = models.CharField(max_length=50, unique=True)
     profile_picture_url = models.CharField(max_length=250)
-    country = models.CharField(max_length=50, unique=True, null=True)
+    country = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'User: {self.username}'
