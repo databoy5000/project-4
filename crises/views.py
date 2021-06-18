@@ -75,7 +75,8 @@ class CrisisDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserCrisisListView(APIView):
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get(self, _request, user_pk):
         print('in get------')
