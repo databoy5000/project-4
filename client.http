@@ -124,8 +124,8 @@ Content-Type: application/json
 
 {
   "userType": "NGO",
-  "username": "ngo3",
-  "email": "ngo3@worco.com",
+  "username": "ngo1",
+  "email": "ngo1@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url"
