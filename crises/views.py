@@ -122,6 +122,7 @@ class NGOResourceListView(APIView):
     def post(self, request):
         
         present_resources = NGOResource.objects.filter(ngo_user=request.user.id)
+        print(present_resources)
         if len(present_resources) >= 1:
             return Response({"message": "This user already has resource entries."}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
@@ -130,10 +131,13 @@ class NGOResourceListView(APIView):
         for resource in request.data['resources']:
             resource['ngo_user'] = request.user.id
             streamlined_data.append(resource)
+            
+        print(streamlined_data)
 
         resource_to_create = NGOResourceSerializer(data=streamlined_data, many=True)
 
         if resource_to_create.is_valid():
+            print('resources valid')
             resource_to_create.save()
             return Response(resource_to_create.data, status=status.HTTP_201_CREATED)
 
