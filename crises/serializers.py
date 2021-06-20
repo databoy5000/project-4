@@ -46,7 +46,8 @@ class WriteCrisisSerializer(CrisisSerializer):
             latitude = validated_data['latitude'],
             place_name = validated_data['place_name'],
             country = validated_data['country'],
-            disaster_description = validated_data['disaster_description']
+            disaster_description = validated_data['disaster_description'],
+            place_type = validated_data['place_type']
         )
         
         requests = [
