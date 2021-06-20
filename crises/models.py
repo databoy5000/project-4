@@ -77,6 +77,7 @@ class Crisis(models.Model):
     place_name = models.CharField(max_length=100)
     country = models.CharField(max_length=70)
     disaster_description = models.TextField(max_length=1000)
+    place_type = models.CharField(max_length=50, blank=True)
 
     owner = models.ForeignKey(
         'jwt_auth.User',
