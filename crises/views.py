@@ -79,9 +79,11 @@ class UserCrisisListView(APIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
     def get(self, _request, user_pk):
-        print('in get------')
         user_crises = Crisis.objects.filter(owner=user_pk)
-        print('--: ', user_crises)
+
+        if not user_crises:
+            raise NotFound()
+
         serialized_crises = ReadCrisisSerializer(user_crises, many=True)
         return Response(serialized_crises.data, status=status.HTTP_200_OK)
 
@@ -109,8 +111,6 @@ class NGOResourceListView(APIView):
         # * Check to only authorize Help-Seeker users to create a crisis
         user_model = User()
         model_user_types = user_model.get_user_types()
-        print('request.user: ', request.user.user_type)
-        print('model_user_types[1]: ', model_user_types[1])
 
         if request.user.user_type != model_user_types[1]:
             raise PermissionDenied()
@@ -141,7 +141,7 @@ class NGOResourceListView(APIView):
 
 class NGOResourceDetailView(APIView):
 
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated, )
 
     def get_resource(self, resource_pk):
         try:
@@ -168,10 +168,10 @@ class NGOResourceDetailView(APIView):
             return Response(updated_ngo_resource.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_ngo_resource.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
+
 class DisasterTypesListView(APIView):
 
     def get(self, _request):
-        print('in GET')
         crisis_model = Crisis()
         disaster_types = crisis_model.get_disaster_types()
 

@@ -1,12 +1,28 @@
-@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDU3NzczNSwidHlwZSI6IkhlbHAtc2Vla2VyIn0.cWf6s0H2HnjH68w7kKM72YvHM84BmAVQcOPr5Ml6tIA
-@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjN9.5TmJA8LDKsmkdHl6P9EaD4I-WYOshkBSWx2AY8ABCCQ
-@userId = 2
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDgwMDAzMiwidHlwZSI6IkhlbHAtc2Vla2VyIn0.Y8ueQ-cEMJH2lU9PHpb02UTJVUZEnrLeEuwHd2yEABM
+@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDc5NTM4NywidHlwZSI6Ik5HTyJ9.HGkeSFedlq10E-4cxxZCx8Lve_rb-6lmAf729Ed6484
+@HSuserId = 2
+@NGOuserId = 3
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/1/
+GET http://localhost:8000/api/crises/crisis/1/
+
+### Edit/Update a crisis
+PUT http://localhost:8000/api/crises/crisis/1/
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
+
+{
+  "disasterType": "Flood",
+  "isSolved": false
+}
+
+### Delete a single crisis
+DELETE http://localhost:8000/api/crises/crisis/1/
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
 
 ### Create a crisis
 POST http://localhost:8000/api/crises/
@@ -16,11 +32,12 @@ Authorization: Bearer {{help_seeker_token}}
 {
   "disasterType": "Tsunami",
   "isSolved": false,
-  "longitude": 50.50,
-  "latitude": -1.10,
+  "latitude": 53.6458,
+  "longitude": 1.7850,
   "placeName": "Huddersfield",
   "country": "United Kingdom",
   "disasterDescription": "pretty big flood, no casualties",
+  "placeType": "country",
   "requests": [
     {
     "resource": 1,
@@ -65,16 +82,6 @@ Authorization: Bearer {{help_seeker_token}}
   ]
 }
 
-### Edit/Update a crisis
-PUT http://localhost:8000/api/crises/1/
-Content-Type: application/json
-Authorization: Bearer {{help_seeker_token}}
-
-{
-  "disasterType": "Flood",
-  "isSolved": false
-}
-
 ### Edit/Update a Request
 PUT http://localhost:8000/api/crises/13/
 Content-Type: application/json
@@ -84,11 +91,6 @@ Authorization: Bearer {{help_seeker_token}}
   "resource": true,
   "quantity": 1000,
 }
-
-### Delete a single crisis
-DELETE http://localhost:8000/api/crises/2/
-Content-Type: application/json
-Authorization: Bearer {{help_seeker_token}}
 
 ### Create a user HELP-SEEKER
 POST http://localhost:8000/api/auth/register/
@@ -238,13 +240,13 @@ Authorization: Bearer {{NGO_token}}
 }
 
 ### Edit/Update NGO Resources
-PUT http://localhost:8000/api/crises/ngo_resources/2/
+PUT http://localhost:8000/api/crises/ngo_resources/1/
 Content-Type: application/json
 Authorization: Bearer {{NGO_token}}
 
 {
-  "resource": 2,
-  "quantity": 778
+  "resource": 1,
+  "quantity": 123
 }
 
 ### Create a crisis (for errors)
@@ -304,7 +306,7 @@ Authorization: Bearer {{help_seeker_token}}
   ]
 }
 
-### Get Specific user crisis list
-GET http://localhost:8000/api/crises/{{userId}}
+### Get Specific HS user crisis list
+GET http://localhost:8000/api/crises/{{HSuserId}}/
 Content-Type: application/json
 Authorization: Bearer {{help_seeker_token}}
