@@ -19,6 +19,8 @@ class CrisisListView(APIView):
         return Response(serialized_crises.data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        print('----inside POST')
+        print(request)
 
         # ! Check to only authorize Help-Seeker users to create a crisis
         user_model = User()

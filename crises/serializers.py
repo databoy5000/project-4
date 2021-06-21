@@ -9,7 +9,7 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'profile_picture_url')
 
 class ReadResourceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,6 +37,8 @@ class WriteCrisisSerializer(CrisisSerializer):
     requests = RequestSerializer(many=True)
 
     def create(self, validated_data):
+        print('---inside create')
+        print('validated_data: ', validated_data)
         requests_data = validated_data.pop('requests')
         created_crisis = Crisis.objects.create(
             disaster_type = validated_data['disaster_type'],
