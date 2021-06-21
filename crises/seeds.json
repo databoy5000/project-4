@@ -78,5 +78,425 @@
     "resource_type": "Material",
     "resource_name": "Transport"
   }
+},
+{
+  "model": "crises.crisis",
+  "pk": 1,
+  "fields": {
+    "disaster_type": "Tsunami",
+    "is_solved": false,
+    "longitude": "5.376390",
+    "latitude": "43.296670",
+    "place_name": "Marseille",
+    "country": "France",
+    "disaster_description": "The beaches are gone! Where are we going to get sunburned this summer now?",
+    "place_type": "place",
+    "owner": 2
+  }
+},
+{
+  "model": "crises.crisis",
+  "pk": 2,
+  "fields": {
+    "disaster_type": "Earthquake",
+    "is_solved": false,
+    "longitude": "-1.531244",
+    "latitude": "54.512111",
+    "place_name": "Barden Moor Road",
+    "country": "United Kingdom",
+    "disaster_description": "My tea spilled everywhere...",
+    "place_type": "address",
+    "owner": 5
+  }
+},
+{
+  "model": "crises.crisis",
+  "pk": 3,
+  "fields": {
+    "disaster_type": "Wildfire",
+    "is_solved": false,
+    "longitude": "-1.658800",
+    "latitude": "38.560700",
+    "place_name": "Sierra",
+    "country": "Spain",
+    "disaster_description": "It's too hot already man!",
+    "place_type": "locality",
+    "owner": 6
+  }
+},
+{
+  "model": "crises.crisis",
+  "pk": 4,
+  "fields": {
+    "disaster_type": "Flood",
+    "is_solved": false,
+    "longitude": "-8.483300",
+    "latitude": "54.266700",
+    "place_name": "Sligo",
+    "country": "Ireland",
+    "disaster_description": "Too much water for my glass!",
+    "place_type": "place",
+    "owner": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 1,
+  "fields": {
+    "quantity": 10,
+    "crisis": 1,
+    "resource": 1
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 2,
+  "fields": {
+    "quantity": 15,
+    "crisis": 1,
+    "resource": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 3,
+  "fields": {
+    "quantity": 30,
+    "crisis": 1,
+    "resource": 3
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 4,
+  "fields": {
+    "quantity": 0,
+    "crisis": 1,
+    "resource": 4
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 5,
+  "fields": {
+    "quantity": 20,
+    "crisis": 1,
+    "resource": 5
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 6,
+  "fields": {
+    "quantity": 100,
+    "crisis": 1,
+    "resource": 6
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 7,
+  "fields": {
+    "quantity": 50,
+    "crisis": 1,
+    "resource": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 8,
+  "fields": {
+    "quantity": 40,
+    "crisis": 1,
+    "resource": 8
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 9,
+  "fields": {
+    "quantity": 10,
+    "crisis": 1,
+    "resource": 9
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 10,
+  "fields": {
+    "quantity": 3,
+    "crisis": 1,
+    "resource": 10
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 11,
+  "fields": {
+    "quantity": 2,
+    "crisis": 2,
+    "resource": 1
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 12,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 13,
+  "fields": {
+    "quantity": 5,
+    "crisis": 2,
+    "resource": 3
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 14,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 4
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 15,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 5
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 16,
+  "fields": {
+    "quantity": 10,
+    "crisis": 2,
+    "resource": 6
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 17,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 18,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 8
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 19,
+  "fields": {
+    "quantity": 0,
+    "crisis": 2,
+    "resource": 9
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 20,
+  "fields": {
+    "quantity": 1,
+    "crisis": 2,
+    "resource": 10
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 21,
+  "fields": {
+    "quantity": 5,
+    "crisis": 3,
+    "resource": 1
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 22,
+  "fields": {
+    "quantity": 0,
+    "crisis": 3,
+    "resource": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 23,
+  "fields": {
+    "quantity": 50,
+    "crisis": 3,
+    "resource": 3
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 24,
+  "fields": {
+    "quantity": 0,
+    "crisis": 3,
+    "resource": 4
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 25,
+  "fields": {
+    "quantity": 20,
+    "crisis": 3,
+    "resource": 5
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 26,
+  "fields": {
+    "quantity": 5,
+    "crisis": 3,
+    "resource": 6
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 27,
+  "fields": {
+    "quantity": 0,
+    "crisis": 3,
+    "resource": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 28,
+  "fields": {
+    "quantity": 0,
+    "crisis": 3,
+    "resource": 8
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 29,
+  "fields": {
+    "quantity": 3,
+    "crisis": 3,
+    "resource": 9
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 30,
+  "fields": {
+    "quantity": 5,
+    "crisis": 3,
+    "resource": 10
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 31,
+  "fields": {
+    "quantity": 25,
+    "crisis": 4,
+    "resource": 1
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 32,
+  "fields": {
+    "quantity": 10,
+    "crisis": 4,
+    "resource": 2
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 33,
+  "fields": {
+    "quantity": 30,
+    "crisis": 4,
+    "resource": 3
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 34,
+  "fields": {
+    "quantity": 5,
+    "crisis": 4,
+    "resource": 4
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 35,
+  "fields": {
+    "quantity": 50,
+    "crisis": 4,
+    "resource": 5
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 36,
+  "fields": {
+    "quantity": 40,
+    "crisis": 4,
+    "resource": 6
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 37,
+  "fields": {
+    "quantity": 60,
+    "crisis": 4,
+    "resource": 7
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 38,
+  "fields": {
+    "quantity": 30,
+    "crisis": 4,
+    "resource": 8
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 39,
+  "fields": {
+    "quantity": 0,
+    "crisis": 4,
+    "resource": 9
+  }
+},
+{
+  "model": "crises.request",
+  "pk": 40,
+  "fields": {
+    "quantity": 15,
+    "crisis": 4,
+    "resource": 10
+  }
 }
 ]

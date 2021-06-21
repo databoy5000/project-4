@@ -1,0 +1,82 @@
+[
+{
+  "model": "crises.resource",
+  "pk": 1,
+  "fields": {
+    "resource_type": "Human",
+    "resource_name": "Doctor"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 2,
+  "fields": {
+    "resource_type": "Human",
+    "resource_name": "Nurse"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 3,
+  "fields": {
+    "resource_type": "Human",
+    "resource_name": "Helper"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 4,
+  "fields": {
+    "resource_type": "Human",
+    "resource_name": "Teacher"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 5,
+  "fields": {
+    "resource_type": "Human",
+    "resource_name": "Rescuer"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 6,
+  "fields": {
+    "resource_type": "Material",
+    "resource_name": "Medical"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 7,
+  "fields": {
+    "resource_type": "Material",
+    "resource_name": "Nutrition"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 8,
+  "fields": {
+    "resource_type": "Material",
+    "resource_name": "Clothes"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 9,
+  "fields": {
+    "resource_type": "Material",
+    "resource_name": "Shelter"
+  }
+},
+{
+  "model": "crises.resource",
+  "pk": 10,
+  "fields": {
+    "resource_type": "Material",
+    "resource_name": "Transport"
+  }
+}
+]
