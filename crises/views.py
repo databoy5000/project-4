@@ -19,8 +19,6 @@ class CrisisListView(APIView):
         return Response(serialized_crises.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print('----inside POST')
-        print(request)
 
         # ! Check to only authorize Help-Seeker users to create a crisis
         user_model = User()
@@ -54,8 +52,6 @@ class CrisisDetailView(APIView):
         return Response(serialized_crisis.data, status=status.HTTP_200_OK)
 
     def put(self, request, crisis_pk):
-
-        print('request.data: ', request.data)
 
         crisis_to_update = self.get_crisis(crisis_pk=crisis_pk)
 
@@ -197,16 +193,9 @@ class RequestDetailView(APIView) :
             return Request.objects.get(pk=crisis_request_pk)
         except Request.DoesNotExist:
             raise NotFound()
-
-    # def get_crisis_user_id(self, crisis_pk):
-    #     try:
-    #         return Crisis.objects.get(pk=crisis_pk)
-    #     except Request.DoesNotExist:
-    #         raise NotFound()
+            
 
     def put(self, request, crisis_request_pk):
-
-        print('---inside PUT')
 
         permission_classes = (IsAuthenticated, )
 

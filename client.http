@@ -7,7 +7,7 @@
 GET http://localhost:8000/api/crises/
 
 ### GET single crisis
-GET http://localhost:8000/api/crises/crisis/4/
+GET http://localhost:8000/api/crises/crisis/5/
 
 ### Edit/Update a crisis
 PUT http://localhost:8000/api/crises/crisis/4/
@@ -89,7 +89,7 @@ Authorization: Bearer {{help_seeker_token}}
 }
 
 ### Edit/Update a Request
-PUT http://localhost:8000/api/crises/request/41
+PUT http://localhost:8000/api/crises/request/41/
 Content-Type: application/json
 Authorization: Bearer {{help_seeker_token}}
 
@@ -316,3 +316,20 @@ Authorization: Bearer {{help_seeker_token}}
 GET http://localhost:8000/api/crises/{{HSuserId}}/
 Content-Type: application/json
 Authorization: Bearer {{help_seeker_token}}
+
+###
+PUT http://localhost:8000/api/crises/crisis/5/
+Content-Type: application/json
+Authorization: Bearer {{help_seeker_token}}
+
+{
+  "country": "United Kingdom",
+  "disasterDescription": "pretty big flood, no casualties",
+  "disasterType": "Hurricaine",
+  "id": 5,
+  "isSolved": false,
+  "latitude": "53.645800",
+  "longitude": "1.785000",
+  "placeName": "Huddersfield",
+  "placeType": "country"
+}
