@@ -59,7 +59,7 @@ class Crisis(models.Model):
 
     DISASTER_TYPES = [
         (TSUNAMI, 'Tsunami'),
-        (HURRICANE, 'Hurricaine'),
+        (HURRICANE, 'Hurricane'),
         (FLOOD, 'Flood'),
         (EARTHQUAKE, 'Earthquake'),
         (WAR, 'War'),
