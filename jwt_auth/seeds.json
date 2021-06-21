@@ -82,5 +82,89 @@
     "groups": [],
     "user_permissions": []
   }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$M3LCNO6txEgM6gvT7MKKXe$y3GP0nSqtcnYxEBw6A6kEVsWnSbS/GGb1Rz8V7GEyD0=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-21T18:25:33.296Z",
+    "user_type": "Help-seeker",
+    "username": "hs2",
+    "email": "hs2@worco.com",
+    "profile_picture_url": "http://res.cloudinary.com/raphchar/image/upload/v1624299640/project_4_worco/cxipttlzarlggpu2yacn.png",
+    "country": "United Kingdom",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$8aMbFGA1hC3yMn1X35B0Q0$5dmgZ57RX5Wl3VD5K4BCpIkQTK8KLoz8uOaaS556WoY=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-21T18:27:55.339Z",
+    "user_type": "Help-seeker",
+    "username": "hs3",
+    "email": "hs3@worco.com",
+    "profile_picture_url": "http://res.cloudinary.com/raphchar/image/upload/v1624300065/project_4_worco/acdtjzoczhpjsurvhrg4.png",
+    "country": "Spain",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$saUOHChF75vo1w9HWpeQDv$s7ktMAybHBvQiwo4b+ezmAMnFkvK0nXg6LlxBBoAGrI=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-21T18:30:37.944Z",
+    "user_type": "Help-seeker",
+    "username": "hs4",
+    "email": "hs4@worco.com",
+    "profile_picture_url": "http://res.cloudinary.com/raphchar/image/upload/v1624300218/project_4_worco/ntlfvdvotvnfnrn1gzfi.jpg",
+    "country": "Ireland",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$A3YUCIh5EXw9P12vofoICD$OOIyUTNCYnWwUH7kWT/1TdjN8X7F9UFwOb4nsGzYjXk=",
+    "last_login": null,
+    "is_superuser": false,
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-06-21T18:31:16.626Z",
+    "user_type": "NGO",
+    "username": "ngo3",
+    "email": "ngo3@worco.com",
+    "profile_picture_url": "https://i.imgur.com/6da62wI.png?1",
+    "country": "",
+    "groups": [],
+    "user_permissions": []
+  }
 }
 ]
