@@ -7,6 +7,7 @@ from .views import (
     NGOResourceListView,
     NGOResourceDetailView,
     UserCrisisListView,
+    RequestDetailView,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path('resources/', ResourceListView.as_view()),
     path('ngo_resources/<int:resource_pk>/', NGOResourceDetailView.as_view()),
     path('ngo_resources/', NGOResourceListView.as_view()),
+    path('request/<int:crisis_request_pk>/', RequestDetailView.as_view()),
 ]

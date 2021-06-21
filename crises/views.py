@@ -4,8 +4,8 @@ from rest_framework import status
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
-from .models import Crisis, NGOResource, Resource
-from .serializers import WriteCrisisSerializer, ReadCrisisSerializer, ReadResourceSerializer, PopulatedNGOResourceSerializer, NGOResourceSerializer, CrisisSerializer
+from .models import Crisis, NGOResource, Request, Resource
+from .serializers import RequestSerializer, WriteCrisisSerializer, ReadCrisisSerializer, ReadResourceSerializer, PopulatedNGOResourceSerializer, NGOResourceSerializer, CrisisSerializer
 from jwt_auth.models import User
 
 
@@ -54,12 +54,15 @@ class CrisisDetailView(APIView):
         return Response(serialized_crisis.data, status=status.HTTP_200_OK)
 
     def put(self, request, crisis_pk):
+
+        print('request.data: ', request.data)
+
         crisis_to_update = self.get_crisis(crisis_pk=crisis_pk)
 
+        request.data['owner'] = request.user.id
         if crisis_to_update.owner != request.user:
             raise PermissionDenied()
 
-        request.data['owner'] = request.user.id
         updated_crisis = CrisisSerializer(crisis_to_update, data=request.data)
         
         if updated_crisis.is_valid():
@@ -183,3 +186,38 @@ class DisasterTypesListView(APIView):
             return Response(disaster_types, status=status.HTTP_202_ACCEPTED)
         return Response({ "message": "Something went wrong!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         
+class RequestDetailView(APIView) :
+
+    def get_crisis_request(self, crisis_request_pk):
+        try:
+            return Request.objects.get(pk=crisis_request_pk)
+        except Request.DoesNotExist:
+            raise NotFound()
+
+    # def get_crisis_user_id(self, crisis_pk):
+    #     try:
+    #         return Crisis.objects.get(pk=crisis_pk)
+    #     except Request.DoesNotExist:
+    #         raise NotFound()
+
+    def put(self, request, crisis_request_pk):
+
+        print('---inside PUT')
+
+        permission_classes = (IsAuthenticated, )
+
+        crisis_request_to_update = self.get_crisis_request(crisis_request_pk=crisis_request_pk)
+        crisis_owner_id = crisis_request_to_update.crisis.owner.id
+
+        if crisis_owner_id != request.user.id:
+            raise PermissionDenied()
+
+        updated_crisis_request = RequestSerializer(
+            crisis_request_to_update,
+            data=request.data
+        )
+        
+        if updated_crisis_request.is_valid():
+            updated_crisis_request.save()
+            return Response(updated_crisis_request.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_crisis_request.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
