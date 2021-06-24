@@ -32,6 +32,7 @@ class RegisterView(APIView):
                     {'message': 'Registration successful'},
                     status=status.HTTP_201_CREATED
                 )
+                
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class LoginView(APIView):
