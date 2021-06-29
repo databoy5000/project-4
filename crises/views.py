@@ -5,8 +5,16 @@ from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 from .models import Crisis, NGOResource, Request, Resource
-from .serializers import RequestSerializer, WriteCrisisSerializer, ReadCrisisSerializer, ReadResourceSerializer, PopulatedNGOResourceSerializer, NGOResourceSerializer, CrisisSerializer
 from jwt_auth.models import User
+from .serializers import (
+    RequestSerializer,
+    WriteCrisisSerializer,
+    ReadCrisisSerializer,
+    ReadResourceSerializer,
+    PopulatedNGOResourceSerializer,
+    NGOResourceSerializer,
+    CrisisSerializer
+)
 
 
 class CrisisListView(APIView):
@@ -20,7 +28,7 @@ class CrisisListView(APIView):
 
     def post(self, request):
 
-        # ! Check to only authorize Help-Seeker users to create a crisis
+        # * Check to only authorize Help-Seeker users to create a crisis
         user_model = User()
         model_user_types = user_model.get_user_types()
         if request.user.user_type != model_user_types[0]:
@@ -75,6 +83,7 @@ class CrisisDetailView(APIView):
         crisis_to_delete.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class UserCrisisListView(APIView):
     
     permission_classes = (IsAuthenticatedOrReadOnly, )
@@ -89,12 +98,52 @@ class UserCrisisListView(APIView):
         return Response(serialized_crises.data, status=status.HTTP_200_OK)
 
 
+class RequestDetailView(APIView):
+
+    def get_crisis_request(self, crisis_request_pk):
+        try:
+            return Request.objects.get(pk=crisis_request_pk)
+        except Request.DoesNotExist:
+            raise NotFound()
+            
+    def put(self, request, crisis_request_pk):
+
+        permission_classes = (IsAuthenticated, )
+
+        crisis_request_to_update = self.get_crisis_request(crisis_request_pk=crisis_request_pk)
+        crisis_owner_id = crisis_request_to_update.crisis.owner.id
+
+        if crisis_owner_id != request.user.id:
+            raise PermissionDenied()
+
+        updated_crisis_request = RequestSerializer(
+            crisis_request_to_update,
+            data=request.data
+        )
+        
+        if updated_crisis_request.is_valid():
+            updated_crisis_request.save()
+            return Response(updated_crisis_request.data, status=status.HTTP_202_ACCEPTED)
+        return Response(updated_crisis_request.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+
 class ResourceListView(APIView):
 
     def get(self, _request):
         resources = Resource.objects.all()
         serialized_resources = ReadResourceSerializer(resources, many=True)
         return Response(serialized_resources.data, status=status.HTTP_200_OK)
+
+
+class DisasterTypesListView(APIView):
+
+    def get(self, _request):
+        crisis_model = Crisis()
+        disaster_types = crisis_model.get_disaster_types()
+
+        if disaster_types:
+            return Response(disaster_types, status=status.HTTP_202_ACCEPTED)
+        return Response({ "message": "Something went wrong!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class NGOResourceListView(APIView):
@@ -109,7 +158,7 @@ class NGOResourceListView(APIView):
 
     def get(self, request):
 
-        # * Check to only authorize Help-Seeker users to create a crisis
+        # * Check to only authorize an NGO user to get its resources
         user_model = User()
         model_user_types = user_model.get_user_types()
 
@@ -123,26 +172,24 @@ class NGOResourceListView(APIView):
     def post(self, request):
         
         present_resources = NGOResource.objects.filter(ngo_user=request.user.id)
-        print(present_resources)
+
         if len(present_resources) >= 1:
             return Response({"message": "This user already has resource entries."}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-        # ! prep for serialization
+        # * prep for serialization
         streamlined_data = []
         for resource in request.data['resources']:
             resource['ngo_user'] = request.user.id
             streamlined_data.append(resource)
-            
-        print(streamlined_data)
 
         resource_to_create = NGOResourceSerializer(data=streamlined_data, many=True)
 
         if resource_to_create.is_valid():
-            print('resources valid')
             resource_to_create.save()
             return Response(resource_to_create.data, status=status.HTTP_201_CREATED)
 
         return Response(resource_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY) 
+
 
 class NGOResourceDetailView(APIView):
 
@@ -172,45 +219,3 @@ class NGOResourceDetailView(APIView):
             updated_ngo_resource.save()
             return Response(updated_ngo_resource.data, status=status.HTTP_202_ACCEPTED)
         return Response(updated_ngo_resource.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-
-
-class DisasterTypesListView(APIView):
-
-    def get(self, _request):
-        crisis_model = Crisis()
-        disaster_types = crisis_model.get_disaster_types()
-
-        print(disaster_types)
-
-        if disaster_types:
-            return Response(disaster_types, status=status.HTTP_202_ACCEPTED)
-        return Response({ "message": "Something went wrong!"}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
-        
-class RequestDetailView(APIView) :
-
-    def get_crisis_request(self, crisis_request_pk):
-        try:
-            return Request.objects.get(pk=crisis_request_pk)
-        except Request.DoesNotExist:
-            raise NotFound()
-            
-
-    def put(self, request, crisis_request_pk):
-
-        permission_classes = (IsAuthenticated, )
-
-        crisis_request_to_update = self.get_crisis_request(crisis_request_pk=crisis_request_pk)
-        crisis_owner_id = crisis_request_to_update.crisis.owner.id
-
-        if crisis_owner_id != request.user.id:
-            raise PermissionDenied()
-
-        updated_crisis_request = RequestSerializer(
-            crisis_request_to_update,
-            data=request.data
-        )
-        
-        if updated_crisis_request.is_valid():
-            updated_crisis_request.save()
-            return Response(updated_crisis_request.data, status=status.HTTP_202_ACCEPTED)
-        return Response(updated_crisis_request.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)

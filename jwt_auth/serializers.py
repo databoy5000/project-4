@@ -9,21 +9,6 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
-    # country = serializers.CharField()
-    # user_type = serializers.CharField()
-
-    # def get_user_type(self, data):
-    #     print('getting user type')
-    #     print('data: ', data)
-
-
-    # def validate_country(self, data):
-    #     print('inside validate country')
-    #     print('data: ', data)
-    #     if (data.user_type == 'Help-seeker') and (not data.country or data.country == ''):
-    #         raise ValidationError({'country': ['****This field may not be blank.']})
-
-    #     return data
 
     def validate(self, data):
         password = data.pop('password')

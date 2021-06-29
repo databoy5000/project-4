@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 
 from .models import Crisis, NGOResource, Request, Resource
@@ -37,8 +36,6 @@ class WriteCrisisSerializer(CrisisSerializer):
     requests = RequestSerializer(many=True)
 
     def create(self, validated_data):
-        print('---inside create')
-        print('validated_data: ', validated_data)
         requests_data = validated_data.pop('requests')
         created_crisis = Crisis.objects.create(
             disaster_type = validated_data['disaster_type'],
@@ -62,26 +59,6 @@ class WriteCrisisSerializer(CrisisSerializer):
         ]
 
         return created_crisis
-
-    # def update(self, _instance, validated_data):
-
-    #     requests_data = validated_data.pop('requests')
-
-    #     updated_crisis = Crisis.objects.update(
-    #         disaster_type = validated_data['disaster_type'],
-    #         is_solved = validated_data['is_solved'],
-    #         owner = validated_data['owner']
-    #     )
-        
-    #     requests = [
-    #         Request.objects
-    #             .filter(resource=request_data.get('resource'))
-    #             .update(quantity=request_data.get('quantity'))
-    #         for request_data in requests_data
-    #     ]
-
-    #     return updated_crisis
-
 
 class NGOResourceSerializer(serializers.ModelSerializer):
     class Meta:

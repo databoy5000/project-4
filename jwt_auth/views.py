@@ -35,6 +35,7 @@ class RegisterView(APIView):
                 
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
+
 class LoginView(APIView):
     def post(self, request):
         email = request.data.get('email')
@@ -60,6 +61,7 @@ class LoginView(APIView):
         )
 
         return Response({'token': token, 'message': f'Welcome back {user_to_login.username}!'})
+
 
 class ProfileView(APIView):
     def get(self, request, pk):
