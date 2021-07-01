@@ -1,4 +1,4 @@
-@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNDkwNjM0MywidHlwZSI6IkhlbHAtc2Vla2VyIn0.fy4aWUX55eV0HFqW5mObZuRylV4KYmZCYuMGhWbXUtU
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNTU4NTgwNCwidHlwZSI6IkhlbHAtc2Vla2VyIn0.cVk3zFlGs_L6_vxRnb8Ce3b4uyi7EzmFULFzU3Rw9Gs
 @NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDkwNjM1OSwidHlwZSI6Ik5HTyJ9.e49EQSrUBJ4Wor_Exiho4y9Qj0cx4DB6u3oGkefmCiI
 @HSuserId = 2
 @NGOuserId = 3
@@ -20,7 +20,7 @@ Authorization: Bearer {{help_seeker_token}}
   "latitude": 30,
   "longitude": 30,
   "placeName": "Huddersfield",
-  "country": "United Kingdom",
+  "country": "",
   "disasterDescription": "pretty big flood, no casualties",
   "placeType": "country",
 }
@@ -104,12 +104,12 @@ Content-Type: application/json
 
 {
   "userType": "Help-seeker",
-  "username": "hs3",
-  "email": "hs3@worco.com",
+  "username": "hs10",
+  "email": "hs10@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
-  "profilePictureUrl": "fake url",
-  "country": "France"
+  "profilePictureUrl": "",
+  "country": ""
 }
 
 ### Create a user HELP-SEEKER 2

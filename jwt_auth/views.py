@@ -64,9 +64,9 @@ class LoginView(APIView):
 
 
 class ProfileView(APIView):
-    def get(self, request, pk):
+    def get(self, request, user_pk):
         try:
-            user = User.objects.get(pk=pk)
+            user = User.objects.get(pk=user_pk)
             serialized_user = PopulatedUserSerializer(user)
             return Response(serialized_user.data, status=status.HTTP_200_OK)
         except User.DoesNotExist:

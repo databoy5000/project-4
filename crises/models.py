@@ -95,15 +95,6 @@ class Crisis(models.Model):
         return disaster_types_list
 
 class Request(models.Model):
-    LOW = 1
-    MEDIUM = 2
-    HIGH = 3
-
-    PRIORITY_LEVELS = [
-        (LOW, 'Low'),
-        (MEDIUM, 'Medium'),
-        (HIGH, 'High')
-    ]
 
     quantity = models.PositiveSmallIntegerField()
 
