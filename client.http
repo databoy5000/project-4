@@ -1,7 +1,7 @@
-@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNTU4NTgwNCwidHlwZSI6IkhlbHAtc2Vla2VyIn0.cVk3zFlGs_L6_vxRnb8Ce3b4uyi7EzmFULFzU3Rw9Gs
-@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNDkwNjM1OSwidHlwZSI6Ik5HTyJ9.e49EQSrUBJ4Wor_Exiho4y9Qj0cx4DB6u3oGkefmCiI
-@HSuserId = 2
-@NGOuserId = 3
+# @help_seeker_token = 
+# @NGO_token = 
+# @HSuserId = 
+# @NGOuserId = 
 
 ### GET all crises
 GET http://localhost:8000/api/crises/
