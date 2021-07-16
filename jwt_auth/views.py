@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied, NotFound
+from rest_framework.exceptions import PermissionDenied, NotFound, ValidationError
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -13,6 +13,21 @@ from .populated import PopulatedUserSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
+
+    def new_user_token(self, new_user):
+        expiry_time = datetime.now() + timedelta(days=7)
+        token = jwt.encode(
+            {
+                'sub': new_user['id'],
+                'exp':  int(expiry_time.strftime('%s')),
+                'type': new_user['user_type']
+            },
+            settings.SECRET_KEY, 
+            algorithm='HS256'
+        )
+
+        return token
+
     def post(self, request):
         user_to_create = UserSerializer(data=request.data)
         if user_to_create.is_valid():
@@ -21,15 +36,23 @@ class RegisterView(APIView):
                     User.objects.get(country=request.data['country'])
                 except User.DoesNotExist:
                     user_to_create.save()
+                    token = self.new_user_token(new_user=user_to_create.data)
                     return Response(
-                        {'message': 'Registration successful'},
+                        {
+                            'message': 'Registration successful',
+                            'token': token
+                        },
                         status=status.HTTP_201_CREATED
                     )
                 return Response({'country': ['Help seeker already exists for this country.']}, status=status.HTTP_409_CONFLICT)
             else:
                 user_to_create.save()
+                token = self.new_user_token(new_user=user_to_create.data)
                 return Response(
-                    {'message': 'Registration successful'},
+                    {
+                        'message': 'Registration successful',
+                        'token': token
+                    },
                     status=status.HTTP_201_CREATED
                 )
                 

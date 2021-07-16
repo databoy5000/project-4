@@ -10,15 +10,20 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
 
+    def validate_country(self, value):
+        user_type = self.initial_data['user_type']
+
+        if (user_type == 'Help-seeker') and (not value or value == ''):
+            raise ValidationError('This field may not be blank.')
+
+        return value
+
     def validate(self, data):
         password = data.pop('password')
         password_confirmation = data.pop('password_confirmation')
 
         if password != password_confirmation:
             raise ValidationError({'password_confirmation': 'Passwords do not match'})
-
-        if (data['user_type'] == 'Help-seeker') and (not data['country'] or data['country'] == ''):
-            raise ValidationError({'country': ['This field may not be blank.']})
 
         try:
             validations.validate_password(password=password)

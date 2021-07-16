@@ -1,5 +1,5 @@
-# @help_seeker_token = 
-# @NGO_token = 
+@help_seeker_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6MTYyNTg0OTMyNywidHlwZSI6IkhlbHAtc2Vla2VyIn0.-Oie5Q7I5I3JJDEdsBIJxKj44Fa8xlE5VdZDeC8eXj8
+@NGO_token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImV4cCI6MTYyNjAxMTExMSwidHlwZSI6Ik5HTyJ9.eRAniloaPbO0g_tJwJlQ819blJe4rVd8pDBkQiSgQgc
 # @HSuserId = 
 # @NGOuserId = 
 
@@ -104,12 +104,12 @@ Content-Type: application/json
 
 {
   "userType": "Help-seeker",
-  "username": "hs10",
-  "email": "hs10@worco.com",
+  "username": "hs26",
+  "email": "hs26@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
-  "profilePictureUrl": "",
-  "country": ""
+  "profilePictureUrl": "fake url",
+  "country": "newnnnnnn new new new country"
 }
 
 ### Create a user HELP-SEEKER 2
@@ -132,8 +132,8 @@ Content-Type: application/json
 
 {
   "userType": "NGO",
-  "username": "ngo1",
-  "email": "ngo1@worco.com",
+  "username": "ngo17",
+  "email": "ngo17@worco.com",
   "password": "Pass1234+=",
   "passwordConfirmation": "Pass1234+=",
   "profilePictureUrl": "fake url"
@@ -157,7 +157,7 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "hs1@worco.com",
+  "email": "hs1@wocro.com",
   "password": "Pass1234+="
 }
 
@@ -166,7 +166,7 @@ POST http://localhost:8000/api/auth/login/
 Content-Type: application/json
 
 {
-  "email": "ngo1@worco.com",
+  "email": "ngo1@wocro.com",
   "password": "Pass1234+="
 }
 
