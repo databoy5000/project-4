@@ -16,7 +16,6 @@ from .serializers import (
     CrisisSerializer
 )
 
-
 class CrisisListView(APIView):
 
     permission_classes = (IsAuthenticatedOrReadOnly, )
